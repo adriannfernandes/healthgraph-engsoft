@@ -16,7 +16,7 @@ public class Registro {
     @Column(name = "altura",nullable = false)
     private Double altura;
     @Temporal(TemporalType.DATE)
-    @Column
+    @Column(name = "data",nullable = false)
     private LocalDate data;
     @Column(name = "imc")
     private Double imc;
@@ -34,7 +34,6 @@ public class Registro {
     public Registro (Double peso, Double altura){
         this.peso = peso;
         this.altura = altura;
-        this.data = LocalDate.now();
     }
     
     public Registro(){
@@ -62,6 +61,10 @@ public class Registro {
 
     public LocalDate getData(){
         return data;
+    }
+
+    public void setData(LocalDate data){
+        this.data = data;
     }
 
     public Double getImc(){

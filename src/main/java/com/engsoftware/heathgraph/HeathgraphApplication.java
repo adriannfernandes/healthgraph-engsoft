@@ -29,8 +29,8 @@ public class HeathgraphApplication implements CommandLineRunner {
 		Crianca c = new Crianca("Criança", 12, MASCULINO,"111.111.111-11");
 		criancaRepository.save(c);
 
-		Registro r = new Registro(10.0, 50.0);
-
-		registroRepository.save(r);
+//		Registro r = new Registro(10.0, 50.0);
+//
+//		registroRepository.save(r);
 	}
 }
