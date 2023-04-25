@@ -20,7 +20,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("api/registros")
 public class RegistroControler {
@@ -28,10 +28,6 @@ public class RegistroControler {
     @Autowired
     private final RegistroService registroService;
 
-    @GetMapping("/exemplo")
-    public String retornaTeste() {
-        return "teste";
-    }
 
     @GetMapping
     public ResponseEntity<List<Registro>> findAllRegistros() {
@@ -43,31 +39,5 @@ public class RegistroControler {
         return new ResponseEntity(registroService.saveRegistro(id, registro), HttpStatus.CREATED);
     }
 
-    @GetMapping("/grafico")
-    @ResponseBody
-    public byte[] gerarGrafico() throws IOException {
 
-        // Dados de exemplo (médias de peso por idade para meninos)
-        int[] idades = {0, 1, 2, 3, 4, 5};
-        double[] pesos = {3.4, 9.5, 12.6, 15.3, 17.2, 90.0};
-
-        // Criação do dataset
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for (int i = 0; i < idades.length; i++) {
-            dataset.addValue(pesos[i], "Peso médio", Integer.toString(idades[i]));
-        }
-
-        // Criação do gráfico
-        JFreeChart chart = ChartFactory.createLineChart("Curva de crescimento de peso por idade (meninos)",
-                "Idade (anos)", "Peso (kg)", dataset, PlotOrientation.VERTICAL, true, true, false);
-
-        // Criação da imagem
-        BufferedImage bufferedImage = chart.createBufferedImage(500, 300);
-
-        // Conversão para bytes
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(bufferedImage, "png", baos);
-
-        return baos.toByteArray();
-    }
 }
