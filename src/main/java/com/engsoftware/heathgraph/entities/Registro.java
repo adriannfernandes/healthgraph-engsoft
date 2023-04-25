@@ -16,7 +16,7 @@ public class Registro {
     @Column(name = "altura",nullable = false)
     private Double altura;
     @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
+    @Column
     private LocalDate data;
     @Column(name = "imc")
     private Double imc;

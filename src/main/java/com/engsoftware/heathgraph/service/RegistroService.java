@@ -36,6 +36,8 @@ public class RegistroService {
     public Registro saveRegistro(Registro registro){
         Double imc = calculaIMC(registro);
         registro.setImc(imc);
+
+
         return registroRepository.save(registro);
     }
 //    public Collection<Registro> registrosByIdCrianca(Long idCrianca){
