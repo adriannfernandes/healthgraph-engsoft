@@ -20,11 +20,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RegistroService {
 
-    @Autowired
+
     private final RegistroRepository registroRepository;
 
-    @Autowired
-    private final CriancaService criancaService;
 
 
     public List<Registro> findAllRegistros(){
@@ -40,9 +38,9 @@ public class RegistroService {
         registro.setImc(imc);
         return registroRepository.save(registro);
     }
-    public Collection<Registro> registrosByIdCrianca(Long idCrianca){
-        return registroRepository.findAllByIdCrianca(idCrianca);
-    }
+//    public Collection<Registro> registrosByIdCrianca(Long idCrianca){
+//        return registroRepository.findAllByIdCrianca(idCrianca);
+//    }
 
     public void calculaDados(){
         
