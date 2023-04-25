@@ -1,0 +1,41 @@
+package com.engsoftware.heathgraph.controlers;
+
+import com.engsoftware.heathgraph.entities.Registro
+import com.engsoftware.heathgraph.repository.RegistroRepository;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("api/registros")
+public Class RegistroController{
+
+    @Autowired
+    private final RegistroService registroService
+
+    @GetMapping
+    public ResponseEntity<List<Registro>> findAllRegistros(){
+        return ResponseEntity.status(HttpStatus.OK).body(registroService.findAllRegistro());
+    }
+
+    @PostMapping
+    public ResponseEntity<Registro> saveRegistro(@RequestBody @Valid Registro registro){
+        return new ResponseEntity(registroService.save(registro), HttpStatus.CREATED);
+    }
+
+    @PutMapping(path="/{id}")
+    public ResponseEntity<Registro> replace(@PathVariable Long id, @RequestBody Registro registro) {
+        registroService.update(id, registro);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        registroService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+}

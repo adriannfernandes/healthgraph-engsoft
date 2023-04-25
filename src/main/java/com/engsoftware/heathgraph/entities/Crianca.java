@@ -68,4 +68,12 @@ public class Crianca {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    public Collection<Registro> getRegistros() {
+        return registros;
+    }
+
+    public void setRegistros(Collection<Registro> registros) {
+        this.registros = registros;
+    }
 }
