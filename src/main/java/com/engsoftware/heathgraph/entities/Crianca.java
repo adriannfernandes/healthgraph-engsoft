@@ -18,11 +18,7 @@ public class Crianca {
     private Sexo sexo;
     @Column(name = "cpf", nullable = false, unique = true)
     private String cpf;
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinTable(name = "responsavel_crianca",
-            joinColumns=@JoinColumn(name="id_crianca"),
-            inverseJoinColumns = @JoinColumn(name="id_responsavel"))
-    private Collection<Responsavel> responsaveis;
+
     @OneToMany(mappedBy = "crianca", fetch = FetchType.EAGER)
     private Collection<Registro> registros;
 
