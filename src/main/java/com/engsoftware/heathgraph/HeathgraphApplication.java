@@ -9,5 +9,4 @@ public class HeathgraphApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HeathgraphApplication.class, args);
 	}
-
 }
