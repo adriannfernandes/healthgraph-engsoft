@@ -15,25 +15,28 @@ public class Registro {
     private Double peso;
     @Column(name = "altura",nullable = false)
     private Double altura;
+    @Column(name = "idade",nullable = false)
+    private int idade;
     @Temporal(TemporalType.DATE)
     @Column(name = "data",nullable = false)
     private LocalDate data;
     @Column(name = "imc")
     private Double imc;
-    @Column(name = "peso_por_idade")
-    private Double pesoXidade;
-    @Column(name = "altura_por_idade")
-    private Double alturaXidade;
-    @Column(name = "imc_por_idade")
-    private Double imcXidade;
+//    @Column(name = "peso_por_idade")
+//    private Double pesoXidade;
+//    @Column(name = "altura_por_idade")
+//    private Double alturaXidade;
+//    @Column(name = "imc_por_idade")
+//    private Double imcXidade;
     @ManyToOne
     @JoinColumn(name = "id_crianca")
     @JsonIgnoreProperties({"registros"})
     private Crianca crianca;
 
-    public Registro (Double peso, Double altura){
+    public Registro (Double peso, Double altura, int idade){
         this.peso = peso;
         this.altura = altura;
+        this.idade = idade;
     }
     
     public Registro(){
@@ -57,6 +60,14 @@ public class Registro {
 
     public void setAltura(Double altura){
         this.altura = altura;
+    }
+
+    public int getIdade(){
+        return idade;
+    }
+
+    public void setAltura(int altura) {
+        this.idade = idade;
     }
 
     public LocalDate getData(){

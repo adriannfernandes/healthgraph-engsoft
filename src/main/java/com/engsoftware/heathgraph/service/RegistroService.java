@@ -37,6 +37,9 @@ public class RegistroService {
         return registroRepository.findById(id).get();
     }
 
+    public List<Registro> findAllRegistrosByIdCrianca(Long id){
+        return registroRepository.findAllByIdCrianca(id);
+    }
     public Registro saveRegistro(Long id, Registro registro){
         Double imc = calculaIMC(registro);
         registro.setImc(imc);
