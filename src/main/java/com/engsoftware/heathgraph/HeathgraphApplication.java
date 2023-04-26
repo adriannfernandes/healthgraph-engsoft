@@ -31,19 +31,23 @@ public class HeathgraphApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Crianca c = new Crianca("Criança", 12, FEMININO,"111.111.111-11");
+		Crianca c = new Crianca("Criança", 8, FEMININO,"111.111.111-11");
 		criancaService.create(c);
-		Registro r = new Registro(46.0,1.62,13);
+		Registro r = new Registro(11.5,0.86,2);
 		r.setData(LocalDate.now());
 		//r.setCrianca(c);
 		registroService.saveRegistro(c.getId(), r);
-		Registro r2 = new Registro(47.0,1.64,14);
+		Registro r2 = new Registro(13.5,0.95,3);
 		r2.setData(LocalDate.now());
-//		r2.setCrianca(c);
+		//r2.setCrianca(c);
 		registroService.saveRegistro(c.getId(), r2);
-		Registro r3 = new Registro(48.0,1.66,15);
+		Registro r3 = new Registro(16.0,1.03,4);
 		r3.setData(LocalDate.now());
-//		r3.setCrianca(c);
+		//r3.setCrianca(c);
 		registroService.saveRegistro(c.getId(), r3);
+		Registro r4 = new Registro(18.2,1.10,5);
+		r4.setData(LocalDate.now());
+		//r5.setCrianca(c);
+		registroService.saveRegistro(c.getId(), r4);
 	}
 }

@@ -23,6 +23,11 @@ public class CriancaControler {
         return ResponseEntity.ok(criancaService.findAll());
     }
 
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Crianca> findById(@PathVariable Long id){
+        return ResponseEntity.ok(criancaService.findById(id));
+    }
+
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody @Valid Crianca crianca){
         criancaService.create(crianca);

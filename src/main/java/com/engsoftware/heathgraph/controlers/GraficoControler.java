@@ -9,6 +9,8 @@ import lombok.Value;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +68,11 @@ public class GraficoControler {
         // Criação do gráfico
         this.chart = ChartFactory.createLineChart("Curva de crescimento de peso por idade (" + sexo + ")",
                 "Idade (anos)", "Peso (kg)", dataset, PlotOrientation.VERTICAL, true, true, false);
+
+        CategoryPlot plot = (CategoryPlot) chart.getPlot();
+        ValueAxis yAxis = plot.getRangeAxis();
+        yAxis.setRange(5, 25);
+
         return "grafico";
     }
     @GetMapping("/imc/{id}")

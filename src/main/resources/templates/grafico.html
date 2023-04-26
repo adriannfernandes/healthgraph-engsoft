@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Exemplo de tag img</title>
-</head>
-<body>
-<h1>Adicionar H1 via Thymeleaf</h1>
-<img src="http://localhost:8080/api/graficos/gerarGrafico">
-</body>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Crescimento Saudável</title>
+        <style>
+            img {
+                display: block;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1 id="titulo"></h1>
+        <h2>Nome da crinaça: </h2> <h3 id="nome"></h3>
+        <h2>Idade da crinaça: </h2> <h3 id="idade"></h3>
+        <h2>Quantidade de registros </h2> <h3 id="quant"></h3>
+        <img src="http://localhost:8080/api/graficos/gerarGrafico">
+
+
+        <img id="imagemIdade" src="">
+
+        <script>
+            const urlLocal = window.location.href;
+            const partes = urlLocal.split("/");
+            const id = partes[partes.length - 1];
+            document.getElementById('titulo').textContent = partes[partes.length - 2];
+            fetch(`http://localhost:8080/api/crianca/${id}`)
+                .then(response => response.json())
+                .then(data => {
+                    const sexo = data.sexo; // Pega o sexo retornado na resposta da requisição
+
+                    document.getElementById('nome').textContent = data.nome;
+                    document.getElementById('idade').textContent = data.idade;
+                    document.getElementById('quant').textContent = data.registros.length;
+
+                    // Faz alguma ação com o sexo, como mudar a imagem
+                    if (sexo == 'MASCULINO') {
+                        document.getElementById('imagemIdade').src = 'http://www.adolesc.com.br/wp-content/uploads/2021/05/OMS-Peso-para-Idade-Meninos-0-5-anos-em-Z-score.jpg';
+                    } else if (sexo == 'FEMININO') {
+                        document.getElementById('imagemIdade').src = 'http://www.adolesc.com.br/wp-content/uploads/2021/05/OMS-Peso-para-Idade-Meninas-0-5-anos-em-Z-score.jpg';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao pegar o sexo:', error);
+                });
+        </script>
+    </body>
 </html>
